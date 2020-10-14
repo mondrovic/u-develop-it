@@ -1,10 +1,19 @@
 DROP TABLE IF EXISTS parties;
 DROP TABLE IF EXISTS candidates;
+DROP TABLE IF EXISTS voter;
 
 CREATE TABLE parties (
   id INTEGER PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   description TEXT
+);
+
+CREATE TABLE voters (
+    id INTEGER PRIMARY KEY,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE candidates(
