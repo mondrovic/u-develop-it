@@ -1,4 +1,3 @@
-const { jsxExpressionContainer } = require("@babel/types");
 const express = require("express");
 const router = express.Router();
 const db = require("../../db/database");
@@ -11,7 +10,7 @@ router.get("/voters", (req, res) => {
 
   db.all(sql, params, (err, rows) => {
     if (err) {
-      res.send(500).json({ error: err.message });
+      res.status(500).json({ error: err.message });
       return;
     }
 
@@ -30,7 +29,7 @@ router.get("/voter/:id", (req, res) => {
 
   db.get(sql, params, (err, row) => {
     if (err) {
-      res.send(500).json({ error: err.message });
+      res.status(500).json({ error: err.message });
       return;
     }
 
@@ -55,7 +54,7 @@ router.post("/voter", ({ body }, res) => {
 
   db.run(sql, params, function (err, data) {
     if (err) {
-      res.send(500).json({ error: err.message });
+      res.status(500).json({ error: err.message });
       return;
     }
 
@@ -71,7 +70,7 @@ router.post("/voter", ({ body }, res) => {
 router.put("/voter/:id", (req, res) => {
   const errors = inputCheck(req.body, "email");
   if (errors) {
-    res.send(400).json({ errors: err.message });
+    res.status(400).json({ errors: err.message });
     return;
   }
 
@@ -82,7 +81,7 @@ router.put("/voter/:id", (req, res) => {
 
   db.run(sql, params, function (err, data) {
     if (err) {
-      res.send(400).json({ error: err.message });
+      res.status(400).json({ error: err.message });
       return;
     }
 
@@ -101,7 +100,7 @@ router.delete("/voter/:id", (req, res) => {
 
   db.run(sql, req.params.id, function (err, result) {
     if (err) {
-      res.send(400).json({ error: err.message });
+      res.status(400).json({ error: err.message });
       return;
     }
 
